@@ -1,4 +1,4 @@
-package com.nicksas.sound;
+package com.nicksas.timer;
 
 import javax.sound.sampled.*;
 import java.io.File;
