@@ -27,13 +27,8 @@ public class Sound {
     public void start() {
         clip.setFramePosition(0);
         clip.start();
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
         playing = true;
-        try {
-            Thread.sleep(clip.getMicrosecondLength() / 1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        stop(false);
     }
 
     public void stop(boolean close) {

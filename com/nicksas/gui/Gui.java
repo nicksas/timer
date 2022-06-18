@@ -10,20 +10,21 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
 public class Gui extends JFrame {
-    private JButton start = new JButton("Запустить");
+    private JButton start = new JButton("Start");
     private JTextField hour = new JTextField(3);
     private JLabel hourLabel = new JLabel("Hour");
     private JTextField minute = new JTextField(3);
     private JLabel minuteLabel = new JLabel("Minute");
     private JTextField second = new JTextField(3);
     private JLabel secondLabel = new JLabel("Second");
+    private JButton stop = new JButton("Stop");
+    Container container = this.getContentPane();
 
     public Gui() {
         super("Timer");
         this.setBounds(100, 100, 250, 100);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Container container = this.getContentPane();
         container.setLayout(new GridLayout(4, 2, 2, 2));
         container.add(hourLabel);
         container.add(hour);
@@ -33,6 +34,8 @@ public class Gui extends JFrame {
         container.add(second);
         start.addActionListener(new StartEventListener());
         container.add(start);
+        container.add(stop);
+        start.addActionListener(new StopEventListener());
     }
 
     class StartEventListener implements ActionListener {

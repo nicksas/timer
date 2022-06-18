@@ -9,16 +9,22 @@ public class Timer {
     private boolean isStop = false;
 
     public Timer(int hour, int minute, int second) {
-//        Scanner scanner = new Scanner(System.in);
-//
-//        System.out.println("Введите количество часов: ");
-//        int hour = scanner.nextInt();
-//
-//        System.out.println("Введите количество минут: ");
-//        int minute = scanner.nextInt();
-//
-//        System.out.println("Введите количество секунд: ");
-//        int second = scanner.nextInt();
+        this.hour = hour;
+        this.minute = minute;
+        this.second = second;
+    }
+
+    public Timer() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Введите количество часов: ");
+        int hour = scanner.nextInt();
+
+        System.out.println("Введите количество минут: ");
+        int minute = scanner.nextInt();
+
+        System.out.println("Введите количество секунд: ");
+        int second = scanner.nextInt();
 
         this.hour = hour;
         this.minute = minute;
@@ -38,18 +44,16 @@ public class Timer {
     }
 
     public void start() {
-        printTimer();
-
         Sound sound = new Sound();
-
-        Thread play = new Thread(new Runnable() {
+        Thread timer = new Thread(new Runnable() {
             @Override
             public void run() {
-                while (!isStop) {
-                    sound.start();
-                }
+                printTimer();
+                sound.start();
             }
         });
+
+        timer.start();
 
         Thread stop = new Thread(new Runnable() {
             @Override
@@ -66,7 +70,6 @@ public class Timer {
             }
         });
 
-        play.start();
         stop.start();
 
     }
