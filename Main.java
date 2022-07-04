@@ -6,10 +6,8 @@ import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-
-//        Timer timer = new Timer();
-//        timer.start();
         Gui app = new Gui();
+        app.pack();
         app.setVisible(true);
     }
 }

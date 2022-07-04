@@ -1,90 +1,80 @@
 package com.nicksas.timer;
 
+import com.nicksas.gui.Gui;
+
 import java.util.Scanner;
 
 public class Timer {
     private int hour;
     private int minute;
     private int second;
-    private boolean isStop = false;
+    private int totalSecond;
+    private Sound sound = new Sound();
+    private boolean isStop = true;
+    private Gui gui;
 
-    public Timer(int hour, int minute, int second) {
+    public Timer(int hour, int minute, int second, Gui gui) {
         this.hour = hour;
         this.minute = minute;
         this.second = second;
+        this.gui = gui;
+        this.totalSecond += hour * 60 * 60;
+        this.totalSecond += minute * 60;
+        this.totalSecond += second;
     }
 
-    public Timer() {
-        Scanner scanner = new Scanner(System.in);
+    public String getFormatedTime() {
+        int hourResult = totalSecond / 3600;
+        int minuteResult = (totalSecond % 3600) / 60;
+        int secondResult = (totalSecond % 3600) % 60;
 
-        System.out.println("Введите количество часов: ");
-        int hour = scanner.nextInt();
-
-        System.out.println("Введите количество минут: ");
-        int minute = scanner.nextInt();
-
-        System.out.println("Введите количество секунд: ");
-        int second = scanner.nextInt();
-
-        this.hour = hour;
-        this.minute = minute;
-        this.second = second;
-    }
-
-    private int timeToSeconds() {
-        int seconds = 0;
-        seconds += hour * 60 * 60;
-        seconds += minute * 60;
-        seconds += second;
-        return seconds;
-    }
-
-    public int getSeconds() {
-        return timeToSeconds();
+        return hourResult + "h. " + minuteResult + "m. " + secondResult + "s. ";
     }
 
     public void start() {
-        Sound sound = new Sound();
+        System.out.println(isStop);
+        if (!isStop) {
+            return;
+        }
         Thread timer = new Thread(new Runnable() {
             @Override
             public void run() {
+                isStop = false;
                 printTimer();
                 sound.start();
             }
         });
 
         timer.start();
+    }
 
-        Thread stop = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (!isStop) {
-                    Scanner scanner = new Scanner(System.in);
-                    System.out.println("Остановить?");
-                    boolean result = scanner.nextBoolean();
-                    if (result) {
-                        sound.stop(true);
-                        isStop = true;
-                    }
-                }
-            }
-        });
-
-        stop.start();
-
+    public void stop() {
+        if (isStop) {
+            return;
+        }
+        sound.stop(true);
+        isStop = true;
+        System.out.println("Таймер остановлен");
     }
 
     private void printTimer() {
         System.out.println("Таймер запущен!");
-        for (int i = getSeconds(); i >= 0; i--) {
-            System.out.println("Осталось " + i + " секунд");
+        while (totalSecond >= 0){
+
+            if (isStop) {
+                return;
+            }
+            gui.showTime(getFormatedTime());
+            System.out.println("Осталось " + totalSecond + " секунд");
             try {
+                totalSecond--;
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 System.out.println("Что-то пошло не так");
                 e.printStackTrace(System.out);
             }
         }
+
         System.out.println("Время вышло");
     }
 }
