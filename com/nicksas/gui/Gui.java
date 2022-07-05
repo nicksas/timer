@@ -53,7 +53,11 @@ public class Gui extends JFrame {
 
     class StartEventListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            timer = new Timer(Integer.parseInt(hour.getText()), Integer.parseInt(minute.getText()), Integer.parseInt(second.getText()), gui);
+            int hourText = !hour.getText().equals("") ? Integer.parseInt(hour.getText()) : 0;
+            int minuteText = !minute.getText().equals("") ? Integer.parseInt(minute.getText()) : 0;
+            int secondText = !second.getText().equals("") ? Integer.parseInt(second.getText()) : 0;
+
+            timer = new Timer(hourText, minuteText, secondText, gui);
             timer.start();
 
             container.add(timeLabel);
