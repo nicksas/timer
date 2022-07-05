@@ -53,11 +53,11 @@ public class Timer {
         }
         sound.stop(true);
         isStop = true;
-        System.out.println("Таймер остановлен");
+//        System.out.println("Таймер остановлен");
     }
 
     private void printTimer() {
-        System.out.println("Таймер запущен!");
+//        System.out.println("Таймер запущен!");
         while (totalSecond >= 0){
 
             if (isStop) {
@@ -69,11 +69,11 @@ public class Timer {
                 totalSecond--;
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                System.out.println("Что-то пошло не так");
+//                System.out.println("Что-то пошло не так");
                 e.printStackTrace(System.out);
             }
         }
 
-        System.out.println("Время вышло");
+//        System.out.println("Время вышло");
     }
 }
