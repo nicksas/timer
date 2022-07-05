@@ -32,7 +32,6 @@ public class Timer {
     }
 
     public void start() {
-        System.out.println(isStop);
         if (!isStop) {
             return;
         }
@@ -65,7 +64,7 @@ public class Timer {
                 return;
             }
             gui.showTime(getFormatedTime());
-            System.out.println("Осталось " + totalSecond + " секунд");
+//            System.out.println("Осталось " + totalSecond + " секунд");
             try {
                 totalSecond--;
                 Thread.sleep(1000);
