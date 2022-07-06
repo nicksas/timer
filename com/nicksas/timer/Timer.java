@@ -1,8 +1,7 @@
 package com.nicksas.timer;
 
 import com.nicksas.gui.Gui;
-
-import java.util.Scanner;
+import com.nicksas.sound.Sound;
 
 public class Timer {
     private int hour;
