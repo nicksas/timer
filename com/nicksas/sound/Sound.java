@@ -13,7 +13,7 @@ public class Sound {
     Boolean playing = false;
 
     public Sound() {
-        String fileName = "resource/sound.wav";
+        String fileName = "resources/sound.wav";
 
         try {
             InputStream bufferedIn = new BufferedInputStream(getFileFromResourceAsStream(fileName));

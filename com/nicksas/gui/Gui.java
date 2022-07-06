@@ -26,7 +26,7 @@ public class Gui extends JFrame {
     Container container = this.getContentPane();
 
     public Gui() {
-        super("Timer");
+        super("Timer by nicksas");
         this.setBounds(200, 200, 250, 100);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.gui = this;
