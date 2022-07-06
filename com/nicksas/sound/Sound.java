@@ -7,14 +7,12 @@ import java.io.InputStream;
 
 public class Sound {
 
-    InputStream audioFile = null;
     Clip clip = null;
     AudioInputStream ais = null;
     Boolean playing = false;
 
     public Sound() {
         String fileName = "resources/sound.wav";
-
         try {
             InputStream bufferedIn = new BufferedInputStream(getFileFromResourceAsStream(fileName));
             ais = AudioSystem.getAudioInputStream(bufferedIn);
@@ -34,7 +32,7 @@ public class Sound {
 
     public void stop(boolean close) {
         clip.stop();
-        if (close){
+        if (close) {
             clip.close();
         }
         playing = false;

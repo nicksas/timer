@@ -21,7 +21,7 @@ public class StartKeyListener implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == 10){
-            gui.new StartEventListener().actionPerformed();
+            gui.start();
         }
     }
 

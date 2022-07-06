@@ -21,7 +21,7 @@ public class StopKeyListener implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == 10){
-            gui.new StopEventListener().actionPerformed();
+            gui.stop();
         }
     }
 
